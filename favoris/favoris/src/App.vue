@@ -6,7 +6,7 @@ import { favoris as tabFavoris } from './stores/favoris';
 
 //ajouter un élément au tableau
 const ajoutFavoris = (fav) => {
-  //value parce que c'est une ref
+  //value parce que c'est une valeur computed
   tabFavoris.value.push(fav);
   console.log(tabFavoris);
 }
@@ -14,6 +14,11 @@ const ajoutFavoris = (fav) => {
 // ajoutFavoris({nom:"gaps", url:"https://gaps.heig-vd.ch/consultation/controlescontinus/consultation.php?idst=17749", categories:["cours", "agenda"]});
 // ajoutFavoris({id:Date.now(), nom:"doc vue", url:"https://vuejs.org/guide/introduction.html#what-is-vue", categories:["cours"]});
 
+//attention il faut mettre -1 pour supprimer le bon élément
+const supprimeFavoris = (fav) => {
+  tabFavoris.value.splice(tabFavoris.value.indexOf(fav)-1, 1);
+  console.log(tabFavoris);
+}
 
 </script>
 
@@ -25,7 +30,7 @@ const ajoutFavoris = (fav) => {
         {{ favoris.nom }}
         <!--le : car c'est une donnée réactive-->
         <a :href="favoris.url">url </a>
-        <button class="deleteFav">X</button>
+        <button @click="$event => supprimeFavoris($event)" class="deleteFav">X</button>
       </p>
     </ul>
   </div>
