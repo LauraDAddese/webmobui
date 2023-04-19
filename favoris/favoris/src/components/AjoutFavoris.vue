@@ -5,13 +5,12 @@ defineProps({});
 
 const emits = defineEmits(["add:fav"]);
 
-const id = ref("");
 const nom = ref("");
 const url = ref("");
 const categories = ref("");
 
 function ajoutFavoris() {
-    emits("add:fav", { nom: nom.value, url: url.value, categories: categories.value });
+    emits("add:fav", {id: Date.now(), nom: nom.value, url: url.value, categories: categories.value });
 }
 </script>
 
